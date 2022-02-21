@@ -1,6 +1,6 @@
 import React from "react";
 import SvgIcon from "@mui/material/SvgIcon";
-import {iconToWeatherKeyMap} from "../WeatherBox/utils/iconToWeatherKeyMap";
+import {iconToWeatherKeyMap} from "../../WeatherBox/utils/iconToWeatherKeyMap";
 
 type WeatherIconProps = {
   weatherKey: string;

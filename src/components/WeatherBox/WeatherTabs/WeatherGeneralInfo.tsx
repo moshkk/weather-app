@@ -3,7 +3,7 @@ import {PaddedContentFlexBoxColumn, PaddedContentFlexBoxRow} from "../../common/
 import {Typography} from "@mui/material";
 import styled from "@mui/material/styles/styled";
 import {WeatherStateDataType} from "../../../state/types/stateData.types";
-import {WeatherIcon} from "../../icons/WeatherIcon";
+import {WeatherIcon} from "../../common/icons/WeatherIcon";
 
 const WeatherInfoBoxRight = styled(PaddedContentFlexBoxRow)(({theme}) => ({
   justifyContent: 'right',
