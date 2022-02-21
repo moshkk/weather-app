@@ -1,4 +1,4 @@
-import React, {SyntheticEvent, useCallback, useState} from "react";
+import React, {SyntheticEvent, useCallback, useMemo, useState} from "react";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -6,9 +6,9 @@ import {WeatherInfoTable} from "./WeatherInfoTable";
 import {
   ActiveLocationStateDataType,
   WeatherStateDataType
-} from "../../../types/weatherStateData.types";
+} from "../../../state/types/stateData.types";
 import {getIsoDateString} from "../../../api/dataUtils";
-import {WeatherInfoBox} from "./WeatherInfoBox";
+import {WeatherGeneralInfo} from "./WeatherGeneralInfo";
 import {WeatherIcon} from "../../icons/WeatherIcon";
 import tabsClasses from "@mui/material/Tabs/tabsClasses";
 
@@ -22,17 +22,11 @@ export const WeatherTabs: React.FC<WeatherTabsProps> = ({ data }) => {
 
   const { locationData: { title, parentTitle }, weatherByDate } = data || {};
 
-  const handleChange = (event: SyntheticEvent, newValue: string) => {
+  const handleChange = useCallback((event: SyntheticEvent, newValue: string) => {
     setActiveDate(newValue);
-  };
+  }, [setActiveDate]);
 
-  const dataByActiveTab = weatherByDate[activeDate];
-
-  const weatherBoxProps = {
-    title,
-    parentTitle,
-    data: dataByActiveTab
-  };
+  const dataByActiveTab = useMemo(() => (weatherByDate[activeDate]), [weatherByDate, activeDate]);
 
   return(
     <Box>
@@ -48,21 +42,18 @@ export const WeatherTabs: React.FC<WeatherTabsProps> = ({ data }) => {
         }}
       >
         {
-          Object.values(weatherByDate).map((item: WeatherStateDataType, idx) => {
-
-            const { weatherStateAbbr, dateDay, applicableDate } = item;
-
-            return(
-              <Tab
-                label={dateDay}
-                icon={<WeatherIcon weatherKey={weatherStateAbbr} fontSize={'small'} />}
-                iconPosition={'end'}
-                value={applicableDate} />
-            );
-          })
+          Object.values(weatherByDate).map(({ dateDay, weatherStateAbbr, applicableDate }: WeatherStateDataType, idx) => (
+            <Tab
+              label={dateDay}
+              icon={<WeatherIcon weatherKey={weatherStateAbbr} fontSize={'small'} />}
+              iconPosition={'end'}
+              value={applicableDate}
+              key={idx}
+            />
+          ))
         }
       </Tabs>
-      <WeatherInfoBox {...weatherBoxProps} />
+      <WeatherGeneralInfo data={dataByActiveTab} parentTitle={parentTitle} title={title} />
       <WeatherInfoTable weatherDataByLocation={dataByActiveTab} />
     </Box>
   );

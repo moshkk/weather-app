@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import {WeatherStateDataType} from "../../../types/weatherStateData.types";
+import {WeatherStateDataType} from "../../../state/types/stateData.types";
 
 const celsiumSign = <span>&deg;C</span>;
 const percentageSign = '%';
@@ -14,24 +14,24 @@ type WeatherInfoTableProps = {
   weatherDataByLocation: WeatherStateDataType;
 };
 
-export const WeatherInfoTable: React.FC<WeatherInfoTableProps> = ({ weatherDataByLocation }) => {
+export const WeatherInfoTable: React.FC<WeatherInfoTableProps> = ({weatherDataByLocation}) => {
 
   const {
-    id, actualTemp, airPressure, applicableDate, dateDay, humidity, maxTemp, minTemp, predictability,
-    visibility, weatherStateAbbr, weatherStateName, windDirectionCompas, windSpeed
+    actualTemp, airPressure, humidity, maxTemp, minTemp, predictability, visibility, windDirectionCompas, windSpeed
   } = weatherDataByLocation || {};
 
-  return(
+  return (
     <TableContainer component={Box}>
       <Table size={'small'}>
         <TableBody>
           <TableRow>
             <TableCell>Temperature:</TableCell>
-            <TableCell>Min: {minTemp}{celsiumSign}, Max: {maxTemp}{celsiumSign}, Current: {actualTemp}{celsiumSign}</TableCell>
+            <TableCell>Min: {minTemp}{celsiumSign}, Max: {maxTemp}{celsiumSign},
+              Current: {actualTemp}{celsiumSign}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Wind:</TableCell>
-            <TableCell>Direction: {windDirectionCompas}, Speed: {windSpeed} mph</TableCell>
+            <TableCell>Direction: {windDirectionCompas}, Speed: {windSpeed} kt</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Air pressure:</TableCell>

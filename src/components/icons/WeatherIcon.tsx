@@ -12,6 +12,6 @@ export const WeatherIcon: React.FC<WeatherIconProps> = ({ weatherKey, fontSize }
   const IconComponent = iconToWeatherKeyMap[weatherKey];
 
   return(
-    <SvgIcon component={IconComponent} fontSize={fontSize} inheritViewBox />
+    <SvgIcon sx={{ margin: '0 10px 0' }} component={IconComponent} fontSize={fontSize} inheritViewBox />
   );
 };

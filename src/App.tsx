@@ -1,8 +1,8 @@
 import React from 'react';
 import {withProviders} from "./system/providers/providers";
-import {Weather} from "./pages/Weather";
+import {AppContainerBox} from "./components/AppContainerBox";
 
-const AppInit = withProviders(() => (<Weather />));
+const AppInit = withProviders(() => (<AppContainerBox />));
 
 export const App: React.FC = () => (
   <AppInit />

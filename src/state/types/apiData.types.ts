@@ -1,7 +1,7 @@
-export type WeatherObjectDataType = {
-  title: string;
+import {WithTitleCommonDataType, WithWoeidCommonDataType} from "./common.types";
+
+export type WeatherObjectDataType = WithWoeidCommonDataType & WithTitleCommonDataType & {
   location_type: string;
-  woeid: number;
   latt_long: string;
   timezone: string;
   time: string;
@@ -32,17 +32,17 @@ export type ConsolidatedWeatherDataType = {
   predictability: number;
 };
 
-export type WeatherDataObjectParentType = {
-  title: string;
+export type WeatherDataObjectParentType = WithTitleCommonDataType & WithWoeidCommonDataType & {
   location_type: string;
-  woeid: number;
   latt_long: string;
 };
 
 export type WeatherObjectDataSourcesListType = WeatherObjectDataSourcesType[];
-export type WeatherObjectDataSourcesType = {
-  title: string;
+export type WeatherObjectDataSourcesType = WithTitleCommonDataType & {
   slug: string;
   url: string;
   crawl_rate: number;
 };
+
+export type SearchItemApiDataListType = SearchItemApiDataType[];
+export type SearchItemApiDataType = WithWoeidCommonDataType & WithTitleCommonDataType;

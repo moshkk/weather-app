@@ -12,19 +12,23 @@ import {
 } from "../../icons";
 
 export enum WEATHER_KEYS {
-  SN = 'sn',
-  SL = 'sl',
-  H = 'h',
-  T = 't',
-  HR = 'hr',
-  LR = 'lr',
-  S = 's',
-  HC = 'hc',
-  LC = 'lc',
-  C = 'c'
+  'SN' = 'sn',
+  'SL' = 'sl',
+  'H' = 'h',
+  'T' = 't',
+  'HR' = 'hr',
+  'LR' = 'lr',
+  'S' = 's',
+  'HC' = 'hc',
+  'LC' = 'lc',
+  'C' = 'c'
 };
 
-export const iconToWeatherKeyMap: Record<WEATHER_KEYS, React.ElementType<any>> = {
+type IconMapperType = {
+  [key: string]: React.ElementType<any>;
+};
+
+export const iconToWeatherKeyMap: IconMapperType = {
   [WEATHER_KEYS.SN]: SnowSvg,
   [WEATHER_KEYS.SL]: SleetSvg,
   [WEATHER_KEYS.H]: HailSvg,

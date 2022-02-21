@@ -1,10 +1,12 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
-import locationReducer, {LocationSliceKey} from "./slices/locationDataSlice";
+import locationDataReducer, {LocationDataSliceKey} from "./slices/locationDataSlice";
+import searchResultsReducer, {LocationSearchResultsKey} from "./slices/locationSearchSlice";
 
 export const store = configureStore({
   reducer: {
-    [LocationSliceKey]: locationReducer
+    [LocationDataSliceKey]: locationDataReducer,
+    [LocationSearchResultsKey]: searchResultsReducer
   }
 });
 

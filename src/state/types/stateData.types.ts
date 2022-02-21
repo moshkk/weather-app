@@ -1,3 +1,5 @@
+import {WithTitleCommonDataType, WithWoeidCommonDataType} from "./common.types";
+
 export type ActiveLocationStateDataType = {
   locationData: LocationStateType;
   weatherByDate: WeatherStateByDateDataType;
@@ -7,10 +9,11 @@ export type WithIdParamDataType = {
   id: number;
 };
 
-export type LocationStateType = WithIdParamDataType & {
-  title: string;
+export type WithLocationParentDataType = {
   parentTitle: string;
-};
+}
+
+export type LocationStateType = WithIdParamDataType & WithLocationParentDataType & WithTitleCommonDataType;
 
 export type WeatherStateByDateDataType = Record<string, WeatherStateDataType>;
 export type WeatherStateDataType = WithIdParamDataType & {
@@ -28,3 +31,6 @@ export type WeatherStateDataType = WithIdParamDataType & {
   windDirectionCompas: string;
   windSpeed: number;
 };
+
+export type SearchItemListStateDataType = SearchItemStateDataType[];
+export type SearchItemStateDataType = WithWoeidCommonDataType & WithTitleCommonDataType;

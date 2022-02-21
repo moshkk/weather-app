@@ -1,23 +1,50 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ActiveLocationStateDataType} from "../../types/weatherStateData.types";
+import {
+  ActiveLocationStateDataType,
+  LocationStateType,
+  WeatherStateByDateDataType
+} from "../types/stateData.types";
+import {getLocationByIdAction} from "../actions/stateActions";
+import {ApiRequestStatusType} from "../types/common.types";
 
-export const LocationSliceKey = 'LocationSliceKey';
+export const LocationDataSliceKey = 'LocationDataSliceKey';
 
-const initialState: ActiveLocationStateDataType = {
-  locationData: {},
-  weatherByDate: {},
-} as ActiveLocationStateDataType;
+type LocationDataStateType = {
+  request: ApiRequestStatusType;
+  data: ActiveLocationStateDataType;
+};
+
+const initialState: LocationDataStateType = {
+  request: {
+    loading: false,
+  },
+  data: {
+    locationData: {} as LocationStateType,
+    weatherByDate: {} as WeatherStateByDateDataType,
+  }
+};
 
 export const locationDataSlice = createSlice({
-  name: LocationSliceKey,
+  name: LocationDataSliceKey,
   initialState,
   reducers: {
-    setLocation: (state, action: PayloadAction<ActiveLocationStateDataType>) => {
-      state.locationData = action.payload.locationData;
-      state.weatherByDate = action.payload.weatherByDate;
+    setLocationData: (state, action: PayloadAction<ActiveLocationStateDataType>) => {
+      state.data.locationData = action.payload.locationData;
+      state.data.weatherByDate = action.payload.weatherByDate;
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getLocationByIdAction.fulfilled, (state, action) => {
+      state.request.loading = false;
+    })
+    builder.addCase(getLocationByIdAction.pending, (state, action) => {
+      state.request.loading = true;
+    })
+    builder.addCase(getLocationByIdAction.rejected, (state, action) => {
+      state.request.loading = false;
+    })
   }
 });
 
-export const { setLocation } = locationDataSlice.actions;
+export const { setLocationData } = locationDataSlice.actions;
 export default locationDataSlice.reducer;
