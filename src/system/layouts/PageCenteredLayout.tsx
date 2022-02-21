@@ -3,6 +3,7 @@ import styled from "@mui/material/styles/styled";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import {PaddedContentFlexBoxColumn} from "../../components/common/components";
+import {AppHeader} from "../../components/AppHeader";
 
 const CenteredFullHeightFlex = styled(Box)(({theme}) => ({
   height: '100vh',
@@ -20,6 +21,7 @@ export const PageCenteredLayout: React.FC<PropsWithChildren<any>> = ({children})
   return(
     <CenteredFullHeightFlex>
       <Paper>
+        <AppHeader />
         <ContentBox>
           {children}
         </ContentBox>

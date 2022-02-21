@@ -35,7 +35,7 @@ export const SearchBoxContainer: React.FC = () => {
   }, []);
 
   return (
-    <PaddedContentFlexBoxColumn sx={{ marginTop: 1 }}>
+    <PaddedContentFlexBoxColumn>
       <SearchBox
         searchResults={searchResults}
         searchRunning={searchRunning}
