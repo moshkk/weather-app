@@ -9,7 +9,7 @@ import {
 } from "../../../state/types/stateData.types";
 import {getIsoDateString} from "../../../api/dataUtils";
 import {WeatherGeneralInfo} from "./WeatherGeneralInfo";
-import {WeatherIcon} from "../../icons/WeatherIcon";
+import {WeatherIcon} from "../../common/icons/WeatherIcon";
 import tabsClasses from "@mui/material/Tabs/tabsClasses";
 
 type WeatherTabsProps = {

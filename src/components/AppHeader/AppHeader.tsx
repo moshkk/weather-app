@@ -1,6 +1,6 @@
 import React from "react";
 import {Typography} from "@mui/material";
-import {PaddedContentFlexBoxRow} from "./common/components";
+import {PaddedContentFlexBoxRow} from "../common/components";
 import styled from "@mui/material/styles/styled";
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 

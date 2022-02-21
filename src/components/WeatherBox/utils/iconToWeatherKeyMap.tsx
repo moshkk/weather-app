@@ -9,7 +9,7 @@ import {
   SleetSvg,
   SnowSvg,
   ThunderStormSvg
-} from "../../icons";
+} from "../../common/icons";
 
 export enum WEATHER_KEYS {
   'SN' = 'sn',
