@@ -26,13 +26,13 @@ type WeatherGeneralInfoProps = {
 
 export const WeatherGeneralInfo: React.FC<WeatherGeneralInfoProps> = ({ parentTitle, data, title }) => {
 
-  const { dateDay, weatherStateName, weatherStateAbbr, applicableDate } = data || {};
+  const { weatherStateName, weatherStateAbbr, applicableDate } = data || {};
 
   return(
     <WeatherInfoBoxContainer>
       <WeatherInfoBoxLeft>
         <Typography variant={'h6'}>{title}, {parentTitle}</Typography>
-        <Typography>{dateDay} {applicableDate}</Typography>
+        <Typography>{applicableDate}</Typography>
         <Typography>{weatherStateName}</Typography>
       </WeatherInfoBoxLeft>
       <WeatherInfoBoxRight>
